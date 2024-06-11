@@ -20,8 +20,14 @@ class Article:
         return self._title
     
     @title.setter
-    def title(self, value):
-        raise AttributeError("Cannot modify the title after it is set")
+    def title(self, title):
+        if not hasattr(self, "_name"):
+         if((type(title) == str) and (5<= len(title) <=50)):
+                self._title = title
+         else:
+             raise ValueError("Title must be a string with length between 5 and 50 characters")
+        else:
+            print("Cannot  modify title after it is already set") 
 
     @property
     def author(self):
@@ -55,6 +61,16 @@ class Author:
     @property
     def name(self):
         return self._name
+    
+    @name.setter
+    def name(self,name):
+        if not hasattr(self, "_name"):
+         if((type(name) == str) and len(name) > 0):
+             self._name = name
+         else:
+            print("Name must be a string and have at least one character")
+        else:
+            print("Cannot change name after already set.")
 
     def add_article(self, magazine, title):
         article = Article(self, magazine, title)
